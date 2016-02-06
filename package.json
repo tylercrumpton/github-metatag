@@ -1,0 +1,15 @@
+{
+  "name": "github-metatag",
+  "version": "1.0.0",
+  "description": "Webapp for viewing GitHub projects that use metatags.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Crumpton",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^1.5.2",
+    "collections": "^3.0.0"
+  }
+}
