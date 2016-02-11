@@ -7,21 +7,6 @@ var headers = { 'cache-control': 'no-cache',
                 'content-type': 'application/json',
                 'user-agent': 'github-metatag' };
 
-var e20options = { method: 'GET',
-  url: url,
-  qs: { q: 'vvv-e20 in:readme user:synapse-wireless' },
-  headers: headers }; 
-
-request(e20options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  response = JSON.parse(body);
-
-  response['items'].forEach(function(repo) {
-    //console.log(repo['repository']['name']);
-  });
-});
-
 var alloptions = { method: 'GET',
   url: url,
   qs: { q: 'meta-tags in:readme user:synapse-wireless' },
