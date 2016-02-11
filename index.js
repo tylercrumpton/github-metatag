@@ -6,7 +6,8 @@ var config = require("config");
 var url = 'https://api.github.com/search/code';
 var headers = { 'cache-control': 'no-cache',
                 'content-type': 'application/json',
-                'user-agent': 'github-metatag' };
+                'user-agent': 'github-metatag',
+                'authorization': 'token ' + config.get('api_key') };
 
 var alloptions = { method: 'GET',
   url: url,
