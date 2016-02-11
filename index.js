@@ -1,6 +1,7 @@
 var request = require("request");
 var FastSet = require("collections/fast-set");
 var async = require("async");
+var config = require("config");
 
 var url = 'https://api.github.com/search/code';
 var headers = { 'cache-control': 'no-cache',
@@ -9,10 +10,12 @@ var headers = { 'cache-control': 'no-cache',
 
 var alloptions = { method: 'GET',
   url: url,
-  qs: { q: 'meta-tags in:readme user:synapse-wireless' },
+  qs: { q: 'meta-tags in:readme user:' + config.get('username') },
   headers: headers };
 
 var allTags = FastSet();
+
+console.log("Getting metatags in repos for user: " + config.get('username'));
 
 request(alloptions, function (error, response, body) {
   if (error) throw new Error(error);

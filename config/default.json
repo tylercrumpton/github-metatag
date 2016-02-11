@@ -1,0 +1,10 @@
+// This is the default configuration file for github-metatag.
+// You can either edit this file directly or create a new config in this directory.
+//
+// To run this application with a non-default config simply run it like:
+//    export NODE_ENV=myconfig; node index.js
+
+{
+  "username": "your_github_username",
+  "api_key": "your_github_api_key"
+}
