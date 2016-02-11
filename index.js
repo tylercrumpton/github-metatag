@@ -2,12 +2,15 @@ var request = require("request");
 var FastSet = require("collections/fast-set");
 var async = require("async");
 var config = require("config");
+var jsonfile = require('jsonfile')
 
 var url = 'https://api.github.com/search/code';
 var headers = { 'cache-control': 'no-cache',
                 'content-type': 'application/json',
                 'user-agent': 'github-metatag',
                 'authorization': 'token ' + config.get('api_key') };
+
+var outFile = config.get('output');
 
 var alloptions = { method: 'GET',
   url: url,
@@ -64,6 +67,9 @@ request(alloptions, function (error, response, body) {
     //  return tag.replace('vvv-', '');
     //}));
     console.log(tagMap);
+    jsonfile.writeFile(outFile, tagMap, function (err) {
+      console.error(err);
+    });
   });
   
 

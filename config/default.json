@@ -6,5 +6,6 @@
 
 {
   "username": "your_github_username",
-  "api_key": "your_github_api_key"
+  "api_key": "your_github_api_key",
+  "output": "tags.json"
 }
