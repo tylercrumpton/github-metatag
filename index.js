@@ -16,15 +16,19 @@ var alloptions = { method: 'GET',
 
 var allTags = FastSet();
 
+var tagMap = {};
+
 console.log("Getting metatags in repos for user: " + config.get('username'));
 
 request(alloptions, function (error, response, body) {
   if (error) throw new Error(error);
 
   repos = JSON.parse(body);
+  //console.log(repos);
   //response['items'].forEach(function(repo) {
   async.each(repos['items'], function(repo, done) {
-      //console.log("Getting: " + repo['url']);
+      var repoName = repo['repository']['name'];
+      //console.log("Getting tags for repo: " + repo['url']);
       var options = { 
         method: 'GET',
         url: repo['url'],
@@ -46,16 +50,20 @@ request(alloptions, function (error, response, body) {
           if (error) throw new Error(error);
           var metastring = body.match(/<!-- meta-tags:.*/)[0];
           var tags = metastring.match(/vvv-[^, ]*/g);
-          allTags = allTags.union(tags);
+          //allTags = allTags.union(tags);
           //console.log(allTags);
+          tagMap[repoName] = tags.map(function (tag) {
+            return tag.replace('vvv-', '');
+          });
           done();
         });
 
       });
   }, function(err) {
-    console.log('All tags: ' + allTags.toArray().map(function (tag) {
-      return tag.replace('vvv-', '');
-    }));
+    //console.log('All tags: ' + allTags.toArray().map(function (tag) {
+    //  return tag.replace('vvv-', '');
+    //}));
+    console.log(tagMap);
   });
   
 
