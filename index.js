@@ -17,7 +17,7 @@ var alloptions = { method: 'GET',
   qs: { q: 'meta-tags in:readme user:' + config.get('username') },
   headers: headers };
 
-var allTags = FastSet();
+var uniqueTags = FastSet();
 
 var tagMap = {};
 
@@ -39,7 +39,7 @@ request(alloptions, function (error, response, body) {
       };
       request(options, function (error, response, body) {
         if (error) throw new Error(error);
-                 
+
         //console.log("re: " + body);
 
         response = JSON.parse(body);
@@ -53,22 +53,25 @@ request(alloptions, function (error, response, body) {
           if (error) throw new Error(error);
           var metastring = body.match(/<!-- meta-tags:.*/)[0];
           var tags = metastring.match(/vvv-[^, ]*/g);
-          //allTags = allTags.union(tags);
-          //console.log(allTags);
-          tagMap[repoName] = tags.map(function (tag) {
+
+          tags = tags.map(function (tag) {
             return tag.replace('vvv-', '');
           });
+
+          tagMap[repoName] = tags;
+
+          uniqueTags = uniqueTags.union(tags);
           done();
         });
 
       });
   }, function(err) {
-    //console.log('All tags: ' + allTags.toArray().map(function (tag) {
-    //  return tag.replace('vvv-', '');
-    //}));
-    console.log(tagMap);
+//    console.log("Repos found: " + getRepoList(tagMap));
+    console.log("Unique tags: " + uniqueTags.toArray());
     jsonfile.writeFile(outFile, tagMap, function (err) {
-      console.error(err);
+      if (err) {
+        console.error(err);
+      }
     });
   });
   
