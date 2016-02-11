@@ -21,9 +21,9 @@ console.log("Getting metatags in repos for user: " + config.get('username'));
 request(alloptions, function (error, response, body) {
   if (error) throw new Error(error);
 
-  response = JSON.parse(body);
+  repos = JSON.parse(body);
   //response['items'].forEach(function(repo) {
-  async.each(response['items'], function(repo, done) {
+  async.each(repos['items'], function(repo, done) {
       //console.log("Getting: " + repo['url']);
       var options = { 
         method: 'GET',
