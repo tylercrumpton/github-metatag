@@ -66,7 +66,7 @@ request(alloptions, function (error, response, body) {
 
       });
   }, function(err) {
-//    console.log("Repos found: " + getRepoList(tagMap));
+    console.log("Repos found: " + getRepoList(tagMap));
     console.log("Unique tags: " + uniqueTags.toArray());
     jsonfile.writeFile(outFile, tagMap, function (err) {
       if (err) {
@@ -74,6 +74,8 @@ request(alloptions, function (error, response, body) {
       }
     });
   });
-  
-
 });
+
+var getRepoList = function(tagMap) {
+  return Object.keys(tagMap);
+}
