@@ -1,7 +1,7 @@
 {
   "name": "github-metatag",
   "version": "1.0.0",
-  "description": "Webapp for viewing GitHub projects that use metatags.",
+  "description": "Library for listing a GitHub user's repos' metatags.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
