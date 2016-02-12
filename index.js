@@ -1,10 +1,5 @@
 var request = require("request");
-var FastSet = require("collections/fast-set");
 var async = require("async");
-var config = require("config");
-var jsonfile = require('jsonfile')
-
-
 
 module.exports = {
   getTagMap: function(username, apiKey, callback) {
