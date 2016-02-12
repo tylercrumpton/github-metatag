@@ -12,6 +12,7 @@
     "async": "^1.5.2",
     "collections": "^3.0.0",
     "config": "^1.19.0",
-    "jsonfile": "^2.2.3"
+    "jsonfile": "^2.2.3",
+    "request": "^2.69.0"
   }
 }
