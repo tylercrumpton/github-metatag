@@ -30,3 +30,7 @@ The above will print out an object that looks like:
 
 If a GitHub API key is presented, GItHub's search API limits are lightened allowing more thatn a few searches per hour. 
 Providing an API key with the proper permissions allows private repos to be searched as well.
+
+## License
+
+Copyright (c) 2016 [Tyler Crumpton](http://tylercrumpton.com), licensed under the [Apache License v2.0](LICENSE.md).
